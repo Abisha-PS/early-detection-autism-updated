@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stage 1: Child Profile & Parent Questionnaire | AutismScreen AI</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <style>
+        .page-header-card {
+            background: linear-gradient(135deg, #eff6ff 0%, #fdf2f8 50%, #fefce8 100%);
+            border-radius: 20px;
+            padding: 26px 30px;
+            margin-bottom: 24px;
+            border: 2px solid #dbeafe;
+        }
+        .form-section {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+        }
+        .form-section-title {
+            font-size: 1.25rem;
+            color: var(--primary);
+            font-weight: 800;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 12px;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+            margin-bottom: 18px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .form-label {
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: #334155;
+        }
+        .form-input, .form-select, .form-textarea {
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1.5px solid #cbd5e1;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        }
+        .q-item {
+            padding: 18px 20px;
+            border-radius: 14px;
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            margin-bottom: 16px;
+            transition: border-color 0.2s, background-color 0.2s;
+        }
+        .q-item:focus-within, .q-item:hover {
+            border-color: #93c5fd;
+            background: #f0f9ff;
+        }
+        .q-prompt {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #1e293b;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+        .q-options {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        .q-chip {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            border-radius: 999px;
+            padding: 8px 18px;
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: #475569;
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none;
+        }
+        .q-chip:hover {
+            border-color: #38bdf8;
+            color: #0369a1;
+        }
+        .q-chip input[type="radio"] {
+            accent-color: #0284c7;
+            width: 16px;
+            height: 16px;
+        }
+        .q-chip:has(input[type="radio"]:checked) {
+            background: #e0f2fe;
+            border-color: #0284c7;
+            color: #0369a1;
+            font-weight: 800;
+        }
+        .btn-launch {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            font-size: 1.15rem;
+            font-weight: 800;
+            padding: 16px 28px;
+            border-radius: 14px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 0 #047857, 0 12px 24px rgba(16, 185, 129, 0.25);
+            transition: all 0.15s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+        }
+        .btn-launch:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 9px 0 #047857, 0 16px 28px rgba(16, 185, 129, 0.35);
+        }
+        .btn-launch:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 #047857;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="dashboard-nav">
+        <div class="brand-title">
+            <span>📋</span>
+            <span>AutismScreen AI — Parent Assessment (Stage 1)</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="child-session.html" class="nav-link">Child Arena</a>
+            <a href="parent-dashboard.html" class="nav-link">Dashboard</a>
+        </div>
+    </nav>
+
+    <div class="container" style="max-width: 920px;">
+        <div class="page-header-card">
+            <h1 style="font-size: 1.6rem; color: #0369a1; font-weight: 900; margin-bottom: 6px;">
+                Stage 1: Child Profile & Developmental Observations
+            </h1>
+            <p style="color: #475569; font-size: 0.95rem; line-height: 1.5; margin-bottom: 0;">
+                Complete this quick 10-item checklist to establish the child's developmental profile. Afterward, your child will be guided into 8 fun interactive play activities with Pip the Penguin!
+            </p>
+        </div>
+
+        <div class="ethical-alert-box">
+            <div class="alert-icon">ℹ️</div>
+            <div class="alert-text">
+                <h4>Multimodal Screening Notice</h4>
+                <p>
+                    Parent questionnaires provide essential context, but <strong>the questionnaire alone does not diagnose autism</strong>. Results are fused with non-invasive camera vision and voice response metrics from the child games.
+                </p>
+            </div>
+        </div>
+
+        <form id="stage1Form" onsubmit="submitStage1(event)">
+            <!-- Section 1: Child Profile -->
+            <div class="form-section">
+                <h2 class="form-section-title"><span>👤</span> Child Demographic & Developmental Profile</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label">Parent Full Name</label>
+                        <input type="text" id="parentFullName" class="form-input" required placeholder="Your name">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Parent Username</label>
+                        <input type="text" id="parentUsername" class="form-input" required placeholder="Choose a username">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Parent Email</label>
+                        <input type="email" id="parentEmail" class="form-input" required placeholder="you@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Account Password</label>
+                        <input type="password" id="parentPassword" class="form-input" required minlength="8" placeholder="At least 8 characters">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Child Given Name / Nickname</label>
+                        <input type="text" id="childName" class="form-input" required placeholder="e.g. child nickname">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Age in Months (24 - 72)</label>
+                        <input type="number" id="ageMonths" class="form-input" min="24" max="72" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Gender</label>
+                        <select id="gender" class="form-select">
+                            <option value="MALE">Male</option>
+                            <option value="FEMALE">Female</option>
+                            <option value="OTHER">Other / Prefer not to specify</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Preferred Activity Language</label>
+                        <select id="preferredLanguage" class="form-select">
+                            <option value="en">English (US/UK)</option>
+                            <option value="ml">Malayalam (മലയാളം)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Communication Level</label>
+                        <select id="communicationLevel" class="form-select">
+                            <option value="NON_VERBAL">Non-verbal (Gestures / Babbling)</option>
+                            <option value="SINGLE_WORDS" selected>Single Words (Speaks a few words)</option>
+                            <option value="PHRASES">Phrases (2-3 word combinations)</option>
+                            <option value="FLUENT">Fluent Sentences</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 14px;">
+                    <label class="form-label">Parent Observations / Concerns (Optional)</label>
+                    <textarea id="developmentalConcerns" class="form-textarea" rows="2" placeholder="e.g. Parent noticed occasional delayed response when called and fascination with spinning objects..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Previous Pediatric / Clinical Notes (Optional)</label>
+                    <textarea id="previousAssessmentNotes" class="form-textarea" rows="2" placeholder="e.g. Paediatric checkup recommended formal developmental triage..."></textarea>
+                </div>
+            </div>
+
+            <!-- Section 2: Standardized Questionnaire Items -->
+            <div class="form-section">
+                <h2 class="form-section-title"><span>📝</span> 10 Behavioral Observations (Select the best match)</h2>
+
+                <div class="q-item">
+                    <p class="q-prompt">1. Social Smile: Does your child smile back at you when you smile or talk to them?</p>
+                    <div class="q-options">
+                        <label class="q-chip"><input type="radio" name="q1" value="2" checked> Usually / Always (2)</label>
+                        <label class="q-chip"><input type="radio" name="q1" value="1"> Sometimes (1)</label>
+                        <label class="q-chip"><input type="radio" name="q1" value="0"> Rarely / Never (0)</label>
+                    </div>
+                </div>
+
+                <div class="q-item">
+                    <p class="q-prompt">2. Eye Contact: Does your child make and sustain eye contact during conversation or play?</p>
+                    <div class="q-options">
+                        <label class="q-chip"><input type="radio" name="q2" value="2"> Usually (2)</label>
+                        <label class="q-chip"><input type="radio" name="q2" value="1" checked> Sometimes (1)</label>
+                        <label class="q-chip"><input type="radio" name="q2" value="0"> Rarely (0)</label>
+                    </div>
+                </div>
+
+                <div class="q-item">
+                    <p class="q-prompt">3. Response to Name: When you call your child's name from across the room, do they turn to look at you?</p>
+                    <div class="q-options">
+                        <label class="q-chip"><input type="radio" name="q3" value="2"> Consistently (2)</label>
+                        <label class="q-chip"><input type="radio" name="q3" value="1"> Occasionally (1)</label>
+                        <label class="q-chip"><input type="radio" name="q3" value="0" checked> Rarely / Needs multiple calls (0)</label>
+                    </div>
+                </div>
+
+                <div class="q-item">
+                    <p class="q-prompt">4. Pointing Interest: Does your child point with one finger to show you an interesting object or toy?</p>
+                    <div class="q-options">
+                        <label class="q-chip"><input type="radio" name="q4" value="2"> Frequently (2)</label>
+                        <label class="q-chip"><input type="radio" name="q4" value="1" checked> Sometimes (1)</label>
+                        <label class="q-chip"><input type="radio" name="q4" value="0"> Rarely / Never (0)</label>
+                    </div>
+                </div>
+
+                <div class="q-item">
+                    <p class="q-prompt">5. Shared Enjoyment: Does your child bring objects or toys to show you just to share excitement?</p>
+                    <div class="q-options">
+                        <label class="q-chip"><input type="radio" name="q5" value="2"> Yes, often (2)</label>
+                        <label class="q-chip"><input type="radio" name="q5" value="1" checked> Sometimes (1)</label>
+                        <label class="q-chip"><input type="radio" name="q5" value="0"> Rarely (0)</label>
+                    </div>
+                </div>
+
+                <div class="q-item">
+                    <p class="q-prompt">6. Imitation: Does your child copy simple everyday gestures (e.g. waving goodbye, clapping hands)?</p>
+                    <div class="q-options">
+                        <label class="q-chip"><input type="radio" name="q6" value="2"> Readily (2)</label>
+                        <label class="q-chip"><input type="radio" name="q6" value="1" checked> Sometimes (1)</label>
+                        <label class="q-chip"><input type="radio" name="q6" value="0"> Rarely (0)</label>
+                    </div>
+                </div>
+
+                <div class="q-item">
+                    <p class="q-prompt">7. Repetitive Movements: Does your child engage in repetitive hand flapping, spinning, or rocking?</p>
+                    <div class="q-options">
+                        <label class="q-chip"><input type="radio" name="q7" value="0"> Rarely / Never</label>
+                        <label class="q-chip"><input type="radio" name="q7" value="1"> Occasional when excited</label>
+                        <label class="q-chip"><input type="radio" name="q7" value="2" checked> Frequent / Daily pattern</label>
+                    </div>
+                </div>
+
+                <div class="q-item">
+                    <p class="q-prompt">8. Sensory Interests: Does your child show unusually intense fascination with spinning wheels, lights, or textures?</p>
+                    <div class="q-options">
+                        <label class="q-chip"><input type="radio" name="q8" value="0"> Typical interest</label>
+                        <label class="q-chip"><input type="radio" name="q8" value="1" checked> Moderate interest</label>
+                        <label class="q-chip"><input type="radio" name="q8" value="2"> Intense, difficult to redirect</label>
+                    </div>
+                </div>
+
+                <div class="q-item">
+                    <p class="q-prompt">9. Play Flexibility: Does your child engage in imaginative pretend play rather than rigid repetitive lining up of toys?</p>
+                    <div class="q-options">
+                        <label class="q-chip"><input type="radio" name="q9" value="2"> Flexible pretend play (2)</label>
+                        <label class="q-chip"><input type="radio" name="q9" value="1" checked> Mixed play styles (1)</label>
+                        <label class="q-chip"><input type="radio" name="q9" value="0"> Rigid / repetitive object sorting (0)</label>
+                    </div>
+                </div>
+
+                <div class="q-item">
+                    <p class="q-prompt">10. Language Milestones: Does your child communicate using age-appropriate words or vocalizations?</p>
+                    <div class="q-options">
+                        <label class="q-chip"><input type="radio" name="q10" value="2"> On track (2)</label>
+                        <label class="q-chip"><input type="radio" name="q10" value="1" checked> Mild delays (1)</label>
+                        <label class="q-chip"><input type="radio" name="q10" value="0"> Significant delay / Minimal speech (0)</label>
+                    </div>
+                </div>
+
+                <button id="btnSubmit" type="submit" class="btn-launch">
+                    <span>Save Profile & Launch Child Play Arena (Games 1–8)</span>
+                    <span style="font-size: 1.4rem;">🚀</span>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script src="js/api-config.js"></script>
+    <script>
+        async function submitStage1(e) {
+            e.preventDefault();
+            const btn = document.getElementById('btnSubmit');
+            btn.disabled = true;
+            btn.innerHTML = '<span>Launching Play World…</span> ⏳';
+
+            const accountResponse = await fetch(apiUrl('/api/auth/register'), {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    fullName: document.getElementById('parentFullName').value,
+                    username: document.getElementById('parentUsername').value,
+                    email: document.getElementById('parentEmail').value,
+                    password: document.getElementById('parentPassword').value
+                })
+            });
+            if (!accountResponse.ok) {
+                alert(await accountResponse.text());
+                btn.disabled = false;
+                btn.innerHTML = '<span>Launch Play World</span> 🎮';
+                return;
+            }
+            const account = await accountResponse.json();
+            sessionStorage.setItem('userId', account.userId);
+
+            const childData = {
+                userId: account.userId,
+                name: document.getElementById('childName').value,
+                ageMonths: parseInt(document.getElementById('ageMonths').value),
+                gender: document.getElementById('gender').value,
+                preferredLanguage: document.getElementById('preferredLanguage').value,
+                communicationLevel: document.getElementById('communicationLevel').value,
+                developmentalConcerns: document.getElementById('developmentalConcerns').value,
+                previousAssessmentNotes: document.getElementById('previousAssessmentNotes').value
+            };
+
+            const childRes = await fetch(apiUrl('/api/children'), {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(childData)
+            });
+            if (!childRes.ok) {
+                alert(await childRes.text());
+                btn.disabled = false;
+                return;
+            }
+            const child = await childRes.json();
+            const childId = child.childId;
+
+            // Collect questionnaire values
+            const getVal = (name) => parseInt(document.querySelector(`input[name="${name}"]:checked`).value);
+            const qPayload = {
+                childId: childId,
+                q1SocialSmile: getVal('q1'),
+                q2EyeContact: getVal('q2'),
+                q3ResponseToName: getVal('q3'),
+                q4PointingInterest: getVal('q4'),
+                q5SharedEnjoyment: getVal('q5'),
+                q6Imitation: getVal('q6'),
+                q7RepetitiveMovements: getVal('q7'),
+                q8UnusualSensoryInterests: getVal('q8'),
+                q9PlayFlexibility: getVal('q9'),
+                q10LanguageMilestone: getVal('q10')
+            };
+
+            try {
+                const questionnaireResponse = await fetch(apiUrl('/api/questionnaire'), {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(qPayload)
+                });
+                if (!questionnaireResponse.ok) throw new Error(await questionnaireResponse.text());
+
+                // Start Session
+                const sessRes = await fetch(apiUrl('/api/sessions/start'), {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ childId: childId })
+                });
+
+                if (sessRes.ok) {
+                    const sess = await sessRes.json();
+                    window.location.href = `child-session.html?sessionId=${sess.sessionId}&childId=${childId}&name=${encodeURIComponent(childData.name)}&lang=${childData.preferredLanguage}`;
+                    return;
+                }
+            } catch (err) {
+                alert(err.message || 'Could not save the assessment');
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>

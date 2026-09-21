@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutismScreen AI | Multimodal Early Behavioral Screening Platform</title>
+  <link rel="stylesheet" href="css/child-theme.css">
+  <style>
+    /* Home Portal Enhancements */
+    .portal-hero {
+      text-align: center;
+      padding: 50px 20px 30px;
+      max-width: 960px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 10;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #ffffff;
+      border: 2px solid #bae6fd;
+      border-radius: 999px;
+      padding: 8px 20px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #0369a1;
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.1);
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      color: #0369a1;
+      margin-bottom: 16px;
+      font-weight: 900;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, #0284c7, #7c3aed);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: #475569;
+      margin-bottom: 36px;
+      line-height: 1.6;
+      font-weight: 600;
+      max-width: 800px;
+      margin-inline: auto;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    /* 4-Stage Pathway Strip */
+    .pathway-container {
+      max-width: 1100px;
+      margin: 0 auto 50px;
+      padding: 0 20px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .pathway-title {
+      text-align: center;
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: #0f172a;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .pathway-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .pathway-step {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 24px 20px;
+      border: 3px solid #f1f5f9;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+      position: relative;
+      transition: all 0.22s;
+    }
+
+    .pathway-step:hover {
+      transform: translateY(-5px);
+      border-color: #38bdf8;
+      box-shadow: 0 14px 28px rgba(2, 132, 199, 0.12);
+    }
+
+    .step-number {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #eff6ff;
+      color: #0284c7;
+      font-weight: 900;
+      display: grid;
+      place-items: center;
+      font-size: 1rem;
+      margin-bottom: 14px;
+      border: 2px solid #bfdbfe;
+    }
+
+    .step-name {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+
+    .step-desc {
+      font-size: 0.9rem;
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    /* Portal Cards */
+    .portal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 26px;
+      max-width: 1160px;
+      margin: 0 auto 60px;
+      padding: 0 20px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .portal-card {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 34px 26px;
+      text-align: center;
+      box-shadow: 0 12px 30px rgba(2, 132, 199, 0.08);
+      border: 4px solid transparent;
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .portal-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(2, 132, 199, 0.18);
+    }
+
+    .portal-icon {
+      font-size: 4rem;
+      margin-bottom: 18px;
+      display: inline-block;
+      transition: transform 0.25s;
+    }
+
+    .portal-card:hover .portal-icon {
+      transform: scale(1.15) rotate(5deg);
+    }
+
+    .portal-title {
+      font-size: 1.35rem;
+      color: #0f172a;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .portal-desc {
+      font-size: 0.95rem;
+      color: #64748b;
+      margin-bottom: 24px;
+      line-height: 1.6;
+      font-weight: 600;
+    }
+
+    /* Ethical disclaimer */
+    .disclaimer-strip {
+      background: #fffbeb;
+      border-top: 3px solid #fde047;
+      padding: 20px 30px;
+      text-align: center;
+      font-size: 0.92rem;
+      color: #92400e;
+      line-height: 1.6;
+      margin-top: auto;
+      position: relative;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating soft bubbles decoration -->
+  <div class="bg-decorations" aria-hidden="true">
+    <div class="cloud-bubble" style="width: 160px; height: 160px; left: 5%; animation-duration: 26s;"></div>
+    <div class="cloud-bubble" style="width: 240px; height: 240px; left: 80%; animation-duration: 32s; animation-delay: 5s;"></div>
+    <div class="cloud-bubble" style="width: 110px; height: 110px; left: 50%; animation-duration: 20s; animation-delay: 9s;"></div>
+  </div>
+
+  <header class="child-header">
+    <div class="child-logo">
+      <span class="logo-icon">🐧</span>
+      <span>AutismScreen AI</span>
+    </div>
+    <div class="header-right">
+      <a href="questionnaire.html" class="btn-child btn-blue" style="padding: 10px 20px; font-size: 0.95rem;">Questionnaire</a>
+      <a href="parent-dashboard.html" class="btn-child btn-purple" style="padding: 10px 20px; font-size: 0.95rem;">Parent Portal</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Banner -->
+    <section class="portal-hero">
+      <div class="hero-badge">
+        <span>🌈</span>
+        <span>AI-Assisted Behavioral Screening Prototype • Ages 2 to 6</span>
+      </div>
+      <h1 class="hero-title">Early Behavioral Screening <span>Made Joyful & Insightful</span></h1>
+      <p class="hero-subtitle">
+        An interactive platform that observes social communication, eye gaze, motor coordination, and vocal engagement through delightful games with Pip the Penguin.
+      </p>
+
+      <div class="hero-cta-group">
+        <a href="child-session.html" class="btn-child btn-green" style="padding: 18px 36px; font-size: 1.3rem;">
+          Play with Pip! 🎮✨
+        </a>
+        <a href="questionnaire.html" class="btn-child btn-blue" style="padding: 18px 32px; font-size: 1.15rem;">
+          Start Stage 1 Assessment 📋
+        </a>
+      </div>
+    </section>
+
+    <!-- 4-Step Screening Pathway -->
+    <section class="pathway-container">
+      <h2 class="pathway-title"><span>🧭</span> The 4-Step Developmental Screening Journey</h2>
+      <div class="pathway-grid">
+        <div class="pathway-step">
+          <div class="step-number">1</div>
+          <h3 class="step-name">Parent Consent</h3>
+          <p class="step-desc">Zero raw video storage policy, anonymous child coding, and non-invasive privacy protections.</p>
+        </div>
+        <div class="pathway-step">
+          <div class="step-number">2</div>
+          <h3 class="step-name">Developmental Q&A</h3>
+          <p class="step-desc">A 10-question checklist completed by the parent covering communication, smiles, and play flexibility.</p>
+        </div>
+        <div class="pathway-step">
+          <div class="step-number">3</div>
+          <h3 class="step-name">Pip's Play Arena</h3>
+          <p class="step-desc">8 child-friendly games capturing real-time attention, imitation accuracy, and turn-taking latency.</p>
+        </div>
+        <div class="pathway-step">
+          <div class="step-number">4</div>
+          <h3 class="step-name">Clinician Dashboard</h3>
+          <p class="step-desc">Multimodal radar profiles, longitudinal session tracking, and supportive home guidance.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Hub Cards -->
+    <section class="portal-grid">
+      <!-- Card 1: Child Play Arena -->
+      <div class="portal-card" style="border-top-color: #f97316;">
+        <div>
+          <div class="portal-icon">🎮</div>
+          <h2 class="portal-title">Child Play Arena</h2>
+          <p class="portal-desc">
+            8 simple, colourful games with Pip! Includes bubble popping, star tracking, action imitation, and cheerful animal sounds.
+          </p>
+        </div>
+        <a href="child-session.html" class="btn-child btn-green" style="justify-content: center;">Play Games 🌟</a>
+      </div>
+
+      <!-- Card 2: Parent Questionnaire -->
+      <div class="portal-card" style="border-top-color: #3b82f6;">
+        <div>
+          <div class="portal-icon">📋</div>
+          <h2 class="portal-title">Stage 1: Parent Assessment</h2>
+          <p class="portal-desc">
+            Complete the age-appropriate developmental questionnaire covering communication, social smile, repetitive actions, and sensory play.
+          </p>
+        </div>
+        <a href="questionnaire.html" class="btn-child btn-blue" style="justify-content: center;">Open Questionnaire</a>
+      </div>
+
+      <!-- Card 3: Dashboard & Analytics -->
+      <div class="portal-card" style="border-top-color: #a855f7;">
+        <div>
+          <div class="portal-icon">📊</div>
+          <h2 class="portal-title">Dashboard & Analytics</h2>
+          <p class="portal-desc">
+            Explore multimodal behavioural radar charts, longitudinal progress monitoring across assessments, and ADOS-2 clinical reference comparison.
+          </p>
+        </div>
+        <a href="parent-dashboard.html" class="btn-child btn-purple" style="justify-content: center;">View Dashboard</a>
+      </div>
+
+      <!-- Card 4: Consent & Privacy -->
+      <div class="portal-card" style="border-top-color: #10b981;">
+        <div>
+          <div class="portal-icon">🔒</div>
+          <h2 class="portal-title">Privacy & Consent (Stage 19)</h2>
+          <p class="portal-desc">
+            Review child-first privacy protections, zero raw video storage guarantee, anonymized child codes, and research ethics framework.
+          </p>
+        </div>
+        <a href="consent.html" class="btn-child" style="background: #0284c7; color: white; justify-content: center; box-shadow: 0 6px 0 #0369a1;">Privacy Policy</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="disclaimer-strip">
+    <strong>Ethical & Clinical Notice:</strong> This platform is an AI-assisted behavioral screening tool. It does <strong>NOT provide a medical diagnosis</strong>. Clinical evaluation by a qualified developmental specialist and standardized ADOS-2 administration provides authoritative diagnostic assessment.
+  </footer>
+
+</body>
+</html>

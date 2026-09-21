@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pip's Play World | Interactive Child Behavioral Games</title>
+  <link rel="stylesheet" href="css/child-theme.css">
+</head>
+<body>
+
+  <!-- Floating soft bubbles decoration -->
+  <div class="bg-decorations" aria-hidden="true">
+    <div class="cloud-bubble" style="width: 140px; height: 140px; left: 8%; animation-duration: 28s;"></div>
+    <div class="cloud-bubble" style="width: 220px; height: 220px; left: 75%; animation-duration: 34s; animation-delay: 4s;"></div>
+    <div class="cloud-bubble" style="width: 90px; height: 90px; left: 45%; animation-duration: 22s; animation-delay: 8s;"></div>
+  </div>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
+
+  <!-- Child Header -->
+  <header class="child-header">
+    <div class="child-logo">
+      <span class="logo-icon">🐧</span>
+      <span>Pip's Play World</span>
+    </div>
+    <div class="header-right">
+      <div class="stage-pill" id="stagePill">Game 1 of 8</div>
+      <button id="btnMute" class="mute-btn" title="Toggle Sound" aria-label="Toggle Sound">🔊</button>
+      <a class="home-btn" href="index.html" title="Exit to Home" aria-label="Exit to Home">🏠</a>
+    </div>
+  </header>
+
+  <!-- Main Arena -->
+  <main class="arena-container">
+    <!-- Active Game Stage -->
+    <section class="game-stage-card" aria-label="Current Game Stage">
+      <div class="welcome-strip">
+        <div class="welcome-copy">
+          <span class="mini-badge">🌈 PLAY • LOOK • LISTEN</span>
+          <h1 id="stageTitle">Bubble Garden</h1>
+          <p id="gameInstruction">Tap the bubbles to help Pip grow a happy garden!</p>
+        </div>
+        <img id="gameArt" class="game-art" src="assets/garden.svg" alt="Colourful game theme illustration">
+      </div>
+
+      <div class="progress-track" aria-label="Overall game progress">
+        <div id="progressFill" class="progress-fill"></div>
+      </div>
+
+      <!-- Dynamic Interactive Game Board -->
+      <div id="gameBoard" class="game-board" aria-live="polite"></div>
+
+      <!-- Controls & Helpful Adult Tips -->
+      <div class="controls-row">
+        <div class="parent-tip">
+          <strong>💡 For adults:</strong> Let your child explore naturally at their own pace. Gentle encouragement is wonderful!
+        </div>
+        <button id="btnNextStage" class="btn-child btn-green">Next Game ➜</button>
+      </div>
+    </section>
+
+    <!-- Side Panel with Pip Mascot & Real-Time Sensors -->
+    <aside class="side-panel" aria-label="Pip Mascot & Sensor Status">
+      <!-- Mascot Card -->
+      <div class="mascot-box" id="mascotBox" title="Click Pip to repeat instructions!">
+        <div class="mascot-avatar" id="mascotAvatar" role="button" aria-label="Pip the Penguin">🐧</div>
+        <div>
+          <div class="pip-name">Pip says… <span>✨</span></div>
+          <div class="mascot-speech-bubble" id="mascotSpeech">Let's play! Tap a bubble.</div>
+        </div>
+      </div>
+
+      <!-- Real-Time Camera Sensor Preview -->
+      <div class="sensor-card">
+        <div class="sensor-header">
+          <span class="sensor-indicator" aria-hidden="true"></span>
+          <span>Camera Sensor</span>
+          <small>live non-invasive</small>
+        </div>
+        <div class="camera-preview-container">
+          <video id="webcamVideo" autoplay muted playsinline aria-hidden="true"></video>
+          <canvas id="trackingCanvas" aria-hidden="true"></canvas>
+        </div>
+        <p class="sensor-note">📷 Non-invasive visual cues (gaze, smiles, imitation). <strong>Raw video is never saved.</strong></p>
+      </div>
+
+      <!-- Real-Time Voice Sensor Preview -->
+      <div class="sensor-card audio-card">
+        <div class="sensor-header">
+          <span class="mic-icon">🎤</span>
+          <span>Voice Sensor</span>
+        </div>
+        <p style="font-size: 0.85rem; color: #475569; margin-bottom: 8px;">Used in speaking games to encourage vocal turn-taking.</p>
+        <div id="sensorStatus" class="sensor-status">Preparing sensors…</div>
+        <button id="btnEnableSensors" class="btn-child btn-blue" type="button" hidden>
+          Allow camera + microphone
+        </button>
+      </div>
+
+      <!-- Easy Rules -->
+      <div class="game-rules">
+        <h3>⭐ Pip's Golden Rules</h3>
+        <div>1️⃣ <span>Listen to friendly Pip</span></div>
+        <div>2️⃣ <span>One simple tap or action</span></div>
+        <div>3️⃣ <span>Take all the time you need</span></div>
+        <div>4️⃣ <span>Have lots of fun! 🎉</span></div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- TensorFlow and CNN Modules -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@2.1.1/dist/mobilenet.min.js"></script>
+  <script src="js/cnn-vision.js"></script>
+  <script src="js/mascot.js"></script>
+  <script src="js/camera-vision.js"></script>
+  <script src="js/voice-processor.js"></script>
+  <script src="js/api-config.js"></script>
+  <script src="js/activity-engine.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const engine = new ActivityEngine();
+      engine.init();
+
+      const avatar = document.getElementById('mascotAvatar');
+      const box = document.getElementById('mascotBox');
+      const speech = document.getElementById('mascotSpeech');
+      const btnMute = document.getElementById('btnMute');
+
+      const repeatSpeech = () => {
+        engine.mascot.playTone('pop');
+        engine.mascot.speak(speech.innerText);
+      };
+
+      avatar?.addEventListener('click', repeatSpeech);
+      box?.addEventListener('click', (e) => {
+        if (e.target !== avatar) repeatSpeech();
+      });
+
+      btnMute?.addEventListener('click', () => {
+        const isMuted = engine.mascot.toggleMute();
+        btnMute.textContent = isMuted ? '🔇' : '🔊';
+        btnMute.title = isMuted ? 'Unmute Sound' : 'Mute Sound';
+      });
+    });
+  </script>
+</body>
+</html>

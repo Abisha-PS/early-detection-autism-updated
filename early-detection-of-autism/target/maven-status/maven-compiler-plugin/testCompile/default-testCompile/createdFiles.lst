@@ -1,0 +1,3 @@
+com\autismscreening\AutismScreeningApplicationTests.class
+com\autismscreening\service\MultimodalFusionServiceTest.class
+com\autismscreening\ml\RandomForestScreeningModelTest.class

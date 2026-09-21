@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Great Job Superstar! Activity Completed! | Pip's Play World</title>
+    <link rel="stylesheet" href="css/child-theme.css">
+    <style>
+        .confetti-canvas {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 100;
+        }
+        .celebration-wrapper {
+            max-width: 740px;
+            margin: 40px auto;
+            background: #ffffff;
+            border-radius: 40px;
+            padding: 48px 36px;
+            text-align: center;
+            box-shadow: 0 24px 50px -10px rgba(2, 132, 199, 0.25);
+            border: 8px solid #fef08a;
+            position: relative;
+            overflow: hidden;
+            z-index: 10;
+        }
+        .certificate-badge {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border: 3px dashed #f59e0b;
+            border-radius: 28px;
+            padding: 24px;
+            margin: 24px 0 32px;
+            position: relative;
+        }
+        .cert-title {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: #b45309;
+            margin-bottom: 6px;
+            letter-spacing: 0.05em;
+        }
+        .cert-name {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #0369a1;
+            margin: 8px 0;
+        }
+        .trophy-icon {
+            font-size: 6rem;
+            animation: trophyBob 1.6s ease-in-out infinite alternate;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+        @keyframes trophyBob {
+            0% { transform: translateY(0) rotate(-6deg) scale(1); }
+            100% { transform: translateY(-12px) rotate(6deg) scale(1.08); }
+        }
+        .celebration-title {
+            font-size: 2.8rem;
+            color: #0369a1;
+            font-weight: 900;
+            margin-bottom: 6px;
+        }
+        .celebration-subtitle {
+            font-size: 1.8rem;
+            color: #d97706;
+            font-weight: 800;
+            margin-bottom: 18px;
+        }
+        .stars-row {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+        }
+        .star-anim {
+            animation: starBounce 1s infinite alternate;
+            display: inline-block;
+        }
+        .star-anim:nth-child(2) { animation-delay: 0.2s; }
+        .star-anim:nth-child(3) { animation-delay: 0.4s; }
+        .star-anim:nth-child(4) { animation-delay: 0.6s; }
+        .star-anim:nth-child(5) { animation-delay: 0.8s; }
+
+        @keyframes starBounce {
+            0% { transform: scale(1); filter: drop-shadow(0 0 4px #fde047); }
+            100% { transform: scale(1.25) translateY(-8px); filter: drop-shadow(0 0 16px #eab308); }
+        }
+
+        .action-cta-group {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .parent-portal-link {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #64748b;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 999px;
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            transition: all 0.2s;
+        }
+        .parent-portal-link:hover {
+            color: #0284c7;
+            border-color: #38bdf8;
+            background: #f0f9ff;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
+
+    <div class="bg-decorations" aria-hidden="true">
+        <div class="cloud-bubble" style="width: 180px; height: 180px; left: 10%; animation-duration: 25s;"></div>
+        <div class="cloud-bubble" style="width: 220px; height: 220px; left: 70%; animation-duration: 30s;"></div>
+    </div>
+
+    <header class="child-header">
+        <div class="child-logo">
+            <span class="logo-icon">🐧</span>
+            <span>Pip's Play World</span>
+        </div>
+        <div class="header-right">
+            <a class="home-btn" href="index.html" title="Exit to Home">🏠</a>
+        </div>
+    </header>
+
+    <main class="celebration-wrapper">
+        <div class="trophy-icon">🏆</div>
+        <h1 class="celebration-title">Activity Completed!</h1>
+        <h2 class="celebration-subtitle">Great Job Superstar! 🎉</h2>
+
+        <div class="stars-row">
+            <span class="star-anim">⭐</span>
+            <span class="star-anim">⭐</span>
+            <span class="star-anim">⭐</span>
+            <span class="star-anim">⭐</span>
+            <span class="star-anim">⭐</span>
+        </div>
+
+        <!-- Official Certificate Badge -->
+        <div class="certificate-badge">
+            <div class="cert-title">🎖️ SUPERSTAR EXPLORER AWARD 🎖️</div>
+            <div class="cert-name" id="childDisplayName">Superstar Explorer</div>
+            <p style="color: #78350f; font-weight: 700; font-size: 1.05rem; margin: 0;">
+                Pip the Penguin celebrates you for outstanding curiosity, attention, and playful learning!
+            </p>
+        </div>
+
+        <div class="action-cta-group">
+            <a id="btnDashboard" href="parent-dashboard.html" class="btn-child btn-green" style="padding: 18px 40px; font-size: 1.25rem;">
+                View Parent Screening Dashboard 📊
+            </a>
+
+            <a id="btnRepeat" href="child-session.html" class="parent-portal-link">
+                Want to play again? Click here to replay the games! 🎮✨
+            </a>
+        </div>
+    </main>
+
+    <script src="js/mascot.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mascot = new MascotGuide();
+            mascot.playTone('fanfare');
+            mascot.speak("Activity Completed! Great Job! Thank you for playing with me today!");
+
+            const params = new URLSearchParams(window.location.search);
+            const sessionId = params.get('sessionId') || '3';
+            const childId = params.get('childId') || '1';
+            const childName = params.get('name');
+
+            if (childName) {
+                document.getElementById('childDisplayName').textContent = childName;
+            }
+
+            document.getElementById('btnDashboard').href = `parent-dashboard.html?sessionId=${sessionId}&childId=${childId}`;
+            document.getElementById('btnRepeat').href = `child-session.html?sessionId=${sessionId}&childId=${childId}`;
+
+            // Launch celebratory confetti
+            launchConfetti();
+        });
+
+        function launchConfetti() {
+            const canvas = document.getElementById("confettiCanvas");
+            if (!canvas) return;
+            const ctx = canvas.getContext("2d");
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const particles = [];
+            const colors = ["#f43f5e", "#ec4899", "#a855f7", "#3b82f6", "#10b981", "#facc15", "#fb923c"];
+
+            for (let i = 0; i < 120; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * -canvas.height,
+                    r: Math.random() * 8 + 4,
+                    d: Math.random() * 80,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    tilt: Math.floor(Math.random() * 10) - 10,
+                    tiltAngleInc: (Math.random() * 0.08) + 0.04,
+                    tiltAngle: 0
+                });
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                let remaining = 0;
+                for (let i = 0; i < particles.length; i++) {
+                    const p = particles[i];
+                    p.tiltAngle += p.tiltAngleInc;
+                    p.y += (Math.cos(p.d) + 3 + p.r / 2);
+                    p.x += Math.sin(p.d);
+                    p.tilt = Math.sin(p.tiltAngle) * 15;
+
+                    if (p.y < canvas.height + 20) {
+                        remaining++;
+                        ctx.beginPath();
+                        ctx.lineWidth = p.r;
+                        ctx.strokeStyle = p.color;
+                        ctx.moveTo(p.x + p.tilt + p.r / 2, p.y);
+                        ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 2);
+                        ctx.stroke();
+                    }
+                }
+                if (remaining > 0) {
+                    requestAnimationFrame(draw);
+                }
+            }
+            draw();
+        }
+    </script>
+</body>
+</html>

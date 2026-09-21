@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Clinical Screening Report | AutismScreen AI</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <style>
+        .report-page {
+            background: #ffffff;
+            max-width: 860px;
+            margin: 30px auto;
+            padding: 44px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid #cbd5e1;
+        }
+        .report-header {
+            text-align: center;
+            border-bottom: 3px solid #1e40af;
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+        }
+        .report-title {
+            font-size: 1.6rem;
+            color: #1e40af;
+            font-weight: 900;
+            letter-spacing: 0.02em;
+        }
+        .report-subtitle {
+            font-size: 0.95rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+        .report-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.92rem;
+        }
+        .report-table th, .report-table td {
+            border: 1px solid #cbd5e1;
+            padding: 9px 12px;
+            text-align: left;
+        }
+        .report-table th {
+            background-color: #f1f5f9;
+            color: #1e293b;
+            font-weight: 700;
+            width: 25%;
+        }
+        .section-heading {
+            font-size: 1.15rem;
+            color: #1e40af;
+            font-weight: 800;
+            margin: 24px 0 10px;
+            border-left: 4px solid #3b82f6;
+            padding-left: 10px;
+        }
+        @media print {
+            body { background: #ffffff; }
+            .dashboard-nav, .no-print { display: none !important; }
+            .report-page { box-shadow: none; border: none; padding: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="dashboard-nav no-print">
+        <div class="brand-title">
+            <span>📄</span>
+            <span>Professional Screening Report Preview</span>
+        </div>
+        <div class="nav-links">
+            <a href="parent-dashboard.html" class="nav-link">Back to Dashboard</a>
+            <button onclick="window.print()" class="btn-primary" style="padding: 7px 14px; font-size: 0.85rem; background: #475569;">
+                🖨️ Print Report
+            </button>
+            <a id="lnkDownloadPdf" href="/api/report/session/3/pdf" class="btn-primary" style="padding: 7px 16px; font-size: 0.85rem; background: #0284c7;">
+                ⬇️ Download Official PDF
+            </a>
+        </div>
+    </nav>
+
+    <main class="report-page">
+        <div class="report-header">
+            <h1 class="report-title">MULTIMODAL BEHAVIOURAL SCREENING REPORT</h1>
+            <p class="report-subtitle">AI-Assisted Early Developmental Screening & Clinical Reference Validation</p>
+        </div>
+
+        <!-- 1. Child Information & Session Metadata -->
+        <h2 class="section-heading">1. Child Demographic & Session Metadata</h2>
+        <table class="report-table">
+            <tr>
+                <th>Anonymous Child Code:</th>
+                <td id="repCode">--</td>
+                <th>Assessment Date:</th>
+                <td id="repDate">--</td>
+            </tr>
+            <tr>
+                <th>Age / Gender:</th>
+                <td id="repAgeGender">--</td>
+                <th>Session Sequence:</th>
+                <td id="repSequence">--</td>
+            </tr>
+            <tr>
+                <th>Language / Communication:</th>
+                <td id="repComm">--</td>
+                <th>Assessment Coordinator:</th>
+                <td>AutismScreen AI Platform</td>
+            </tr>
+        </table>
+
+        <!-- 2. Screening Result & Risk Category -->
+        <h2 class="section-heading">2. Machine Learning Screening Classification</h2>
+        <div id="screeningCallout" style="background: #fef3c7; border: 1.5px solid #fcd34d; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
+            <div id="repCategory" style="font-size: 1.2rem; font-weight: 800; color: #b45309;">
+                SCREENING CATEGORY: --
+            </div>
+            <div id="repMetrics" style="font-size: 0.92rem; color: #78350f; margin-top: 5px;">
+                Continuous Risk Score: <strong>--</strong> | Model Confidence: <strong>--</strong> | Classifier: --
+            </div>
+        </div>
+
+        <!-- 3. Behavioural Features Matrix A through J -->
+        <h2 class="section-heading">3. Multimodal Behavioural Feature Matrix (Categories A through J)</h2>
+        <table class="report-table">
+            <tr>
+                <th>A. Social Interaction:</th><td id="featA">58.0 / 100</td>
+                <th>B. Communication:</th><td id="featB">52.0 / 100</td>
+            </tr>
+            <tr>
+                <th>C. Visual Attention:</th><td id="featC">64.0 / 100</td>
+                <th>D. Motor Behaviour:</th><td id="featD">68.0 / 100</td>
+            </tr>
+            <tr>
+                <th>E. Imitation Accuracy:</th><td id="featE">70.0 / 100</td>
+                <th>F. Play Flexibility:</th><td id="featF">62.0 / 100</td>
+            </tr>
+            <tr>
+                <th>G. Repetitive Behaviour Index:</th><td id="featG">36.0 / 100</td>
+                <th>H. Response Latency Score:</th><td id="featH">74.0 / 100</td>
+            </tr>
+            <tr>
+                <th>I. Voice Metrics Index:</th><td id="featI">62.0 / 100</td>
+                <th>J. Camera Movement Metric:</th><td id="featJ">71.0 / 100</td>
+            </tr>
+        </table>
+
+        <!-- 4. ADOS-2 Clinical Reference Comparison -->
+        <h2 class="section-heading">4. ADOS-2 Standardized Clinical Reference Comparison</h2>
+        <table class="report-table">
+            <tr>
+                <th>Standardized Module:</th>
+                <td id="adosMod">ADOS-2 Module 1 (Toddler/Preschool with single words)</td>
+                <th>Evaluation Date:</th>
+                <td id="adosDate">2026-07-20 (Recorded Reference)</td>
+            </tr>
+            <tr>
+                <th>Social Affect (SA) / RRB:</th>
+                <td id="adosScores">SA: 9 | RRB: 3 | Total Cutoff: 12</td>
+                <th>Clinical Classification:</th>
+                <td id="adosClass" style="font-weight: 700; color: #b45309;">AUTISM SPECTRUM</td>
+            </tr>
+            <tr>
+                <th>Concordance Status:</th>
+                <td id="adosConcordance" colspan="3" style="font-weight: 700; color: #15803d;">
+                    Concordant Agreement (AI risk categorization aligns with clinical triage threshold)
+                </td>
+            </tr>
+        </table>
+
+        <!-- 5. Supportive Guidance Summary -->
+        <h2 class="section-heading">5. Supportive Developmental Recommendations</h2>
+        <ul id="recommendationsList" style="margin-left: 20px; font-size: 0.92rem; line-height: 1.6; color: #334155; margin-bottom: 20px;">
+            <li><strong>Communication:</strong> Facilitate daily back-and-forth conversational games; allow 5-8 seconds response processing time; explore consultation with a certified Speech-Language Pathologist.</li>
+            <li><strong>Social Interaction:</strong> Foster joint attention pointing ('Look at the puppy!'); engage in reciprocal floor games like rolling balls or musical freeze.</li>
+            <li><strong>Sensory & Motor:</strong> Create calm sensory reset corners; incorporate rhythm and bilateral clapping games.</li>
+        </ul>
+
+        <!-- 6. Limitations & Disclaimer -->
+        <h2 class="section-heading">6. Limitations & Clinical Follow-up Advice</h2>
+        <p style="font-size: 0.86rem; color: #64748b; line-height: 1.5; font-style: italic;">
+            Disclaimer: This screening report is generated by an automated computational system utilizing consumer-grade webcam and microphone sensors. Observations do not represent medical or diagnostic certitude. A comprehensive clinical developmental evaluation by a certified developmental paediatrician or child psychologist is recommended.
+        </p>
+    </main>
+
+    <script src="js/api-config.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const p = new URLSearchParams(window.location.search);
+            const s = p.get('sessionId');
+            if (!s) return;
+            document.getElementById('lnkDownloadPdf').href = apiUrl(`/api/report/session/${s}/pdf`);
+
+            try {
+                const res = await fetch(apiUrl(`/api/results/session/${s}`));
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data.child) {
+                        document.getElementById('repCode').textContent = data.child.anonymousCode;
+                        document.getElementById('repAgeGender').textContent = `${data.child.ageMonths} months (${(data.child.ageMonths / 12).toFixed(1)} yrs) / ${data.child.gender}`;
+                        document.getElementById('repComm').textContent = `${data.child.preferredLanguage.toUpperCase()} / ${data.child.communicationLevel.replace('_', ' ')}`;
+                    }
+                    if (data.sessionDate) {
+                        document.getElementById('repDate').textContent = data.sessionDate;
+                    }
+                    if (data.sessionNumber) {
+                        document.getElementById('repSequence').textContent = `Assessment #${data.sessionNumber}`;
+                    }
+                    if (data.screeningOutcome) {
+                        document.getElementById('repCategory').textContent = `SCREENING CATEGORY: ${data.screeningOutcome.screeningCategory.replace(/_/g, ' ')}`;
+                        document.getElementById('repMetrics').innerHTML = `Continuous Risk Score: <strong>${data.screeningOutcome.riskScore} / 1.00</strong> | Model Confidence: <strong>${Math.round(data.screeningOutcome.confidence * 100)}%</strong> | Classifier: Multimodal Ensemble (Random Forest)`;
+                    }
+                    if (data.behaviouralCategories) {
+                        const b = data.behaviouralCategories;
+                        if (b.socialInteraction !== undefined) document.getElementById('featA').textContent = `${b.socialInteraction} / 100`;
+                        if (b.communication !== undefined) document.getElementById('featB').textContent = `${b.communication} / 100`;
+                        if (b.attention !== undefined) document.getElementById('featC').textContent = `${b.attention} / 100`;
+                        if (b.motorBehaviour !== undefined) document.getElementById('featD').textContent = `${b.motorBehaviour} / 100`;
+                        if (b.imitation !== undefined) document.getElementById('featE').textContent = `${b.imitation} / 100`;
+                        if (b.playBehaviour !== undefined) document.getElementById('featF').textContent = `${b.playBehaviour} / 100`;
+                        if (b.repetitiveBehaviour !== undefined) document.getElementById('featG').textContent = `${b.repetitiveBehaviour} / 100`;
+                        if (b.responseLatency !== undefined) document.getElementById('featH').textContent = `${b.responseLatency} / 100`;
+                        if (b.voiceMetric !== undefined) document.getElementById('featI').textContent = `${b.voiceMetric} / 100`;
+                        if (b.cameraMovement !== undefined) document.getElementById('featJ').textContent = `${b.cameraMovement} / 100`;
+                    }
+                    if (data.clinicalReferenceComparison && data.clinicalReferenceComparison.clinicalReferenceAvailable) {
+                        const c = data.clinicalReferenceComparison;
+                        if (c.adosModule) document.getElementById('adosMod').textContent = c.adosModule;
+                        if (c.evaluationDate) document.getElementById('adosDate').textContent = c.evaluationDate;
+                        if (c.adosSocialAffectScore !== undefined) {
+                            document.getElementById('adosScores').textContent = `SA: ${c.adosSocialAffectScore} | RRB: ${c.adosRrbScore} | Total: ${c.adosTotalScore}`;
+                        }
+                        if (c.adosClassification) document.getElementById('adosClass').textContent = c.adosClassification;
+                        if (c.agreementStatus) document.getElementById('adosConcordance').textContent = `${c.agreementStatus} (${c.concordant ? 'Agreement with triage threshold' : 'Requires Clinical Review'})`;
+                    }
+                    if (data.recommendations && data.recommendations.length > 0) {
+                        document.getElementById('recommendationsList').innerHTML = data.recommendations.map(r => `
+                            <li><strong>${r.category}:</strong> ${r.guidanceText}</li>
+                        `).join('');
+                    }
+                }
+            } catch (e) {
+                console.warn("Report dynamic data sync:", e);
+            }
+        });
+    </script>
+</body>
+</html>

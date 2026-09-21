@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parent Consent & Child Privacy Policy | Stage 19</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+    <nav class="dashboard-nav">
+        <div class="brand-title">
+            <span>🔒</span>
+            <span>AutismScreen AI — Privacy & Ethical Safeguards</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="questionnaire.html" class="nav-link">Questionnaire</a>
+            <a href="parent-dashboard.html" class="nav-link">Dashboard</a>
+        </div>
+    </nav>
+
+    <div class="container" style="max-width: 800px;">
+        <div class="card" style="padding: 32px; margin-bottom: 30px;">
+            <h1 style="font-size: 1.5rem; margin-bottom: 16px; color: #1e40af;">Stage 19: Privacy, Consent, & Ethical Framework</h1>
+            <p style="color: #475569; margin-bottom: 20px;">
+                Before starting the interactive behavioural screening, please review how child data and sensory observations are protected.
+            </p>
+
+            <div class="ethical-alert-box">
+                <div class="alert-icon">⚠️</div>
+                <div class="alert-text">
+                    <h4>Important Clinical Disclaimer</h4>
+                    <p>
+                        This application is an AI-assisted <strong>behavioural screening tool</strong> designed for early identification and developmental triage. It is <strong>NOT a clinical diagnostic instrument</strong> and cannot independently diagnose Autism Spectrum Disorder (ASD). A definitive diagnosis requires comprehensive multidisciplinary clinical assessment, including standardized tools such as ADOS-2 administered by certified professionals.
+                    </p>
+                </div>
+            </div>
+
+            <h3 style="font-size: 1.1rem; margin: 20px 0 10px;">Our Privacy Commitments:</h3>
+            <ul style="margin-left: 20px; color: #334155; line-height: 1.8; margin-bottom: 24px;">
+                <li><strong>No Raw Video/Audio Recording Storage:</strong> The webcam and microphone are used solely in real-time within your browser to extract mathematical and kinematic features (such as response latency, gaze angle proxy, and vocal pitch variability). Raw video streams are NEVER recorded, stored on disk, or uploaded to servers.</li>
+                <li><strong>Anonymized Child ID:</strong> Every child profile is referenced strictly by an anonymous identifier (e.g. <code>CH-2026-8912</code>). No unnecessary personal identifiers are stored.</li>
+                <li><strong>Role-Based Access:</strong> Only the authenticated parent and authorized consulting clinician may view the child's numerical behavioural profile.</li>
+                <li><strong>Right to Deletion:</strong> Parents maintain the full right to delete their child's screening records and progress history at any time.</li>
+            </ul>
+
+            <form id="consentForm" onsubmit="handleConsent(event)" style="background: #f8fafc; padding: 20px; border-radius: 8px; border: 1px solid #e2e8f0;">
+                <h4 style="margin-bottom: 12px; color: #0f172a;">Parent / Legal Guardian Consent</h4>
+                <label style="display: flex; gap: 10px; align-items: flex-start; margin-bottom: 14px; cursor: pointer;">
+                    <input type="checkbox" id="chkConsent" required style="margin-top: 4px;">
+                    <span style="font-size: 0.9rem; color: #334155;">I confirm that I am the parent or legal guardian of the child, and I consent to the non-invasive webcam and microphone behavioral screening activities.</span>
+                </label>
+                <label style="display: flex; gap: 10px; align-items: flex-start; margin-bottom: 20px; cursor: pointer;">
+                    <input type="checkbox" id="chkDisclaimer" required style="margin-top: 4px;">
+                    <span style="font-size: 0.9rem; color: #334155;">I understand that this screening provides non-diagnostic observations and that professional developmental evaluation should be sought if concerns arise.</span>
+                </label>
+
+                <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; font-size: 1rem; padding: 12px;">
+                    Accept & Proceed to Assessment 🌟
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/api-config.js"></script>
+    <script>
+        async function handleConsent(e) {
+            e.preventDefault();
+            try {
+                const response = await fetch(apiUrl('/api/auth/consent'), {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ userId: sessionStorage.getItem('userId') })
+                });
+                if (!response.ok) throw new Error(await response.text());
+            } catch (err) {
+                alert(err.message || 'Could not save consent');
+                return;
+            }
+            window.location.href = 'questionnaire.html';
+        }
+    </script>
+</body>
+</html>
+
